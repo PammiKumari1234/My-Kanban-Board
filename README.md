@@ -34,3 +34,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+1. Installed Next.js + tsx + tailwind
+2. Created a basic Navbar with repsonive hamburger menu. Installed lucide-react for the icons. 
+3. Made the kanban Page
+5. Craeted Next.js APIs route for getting the data on the kanban page. To do- implement a loader and optimize the network call, implement a lazy laoding, shimmer UI.
+4. To Do- create a form task- add that as a button on the navbar.
+    a. Make a modal like straucture that appaers in the center of the page, then it will have the prompt like messages. Have a attachment option for uploading files, a close button. 
+    b. as soon as I submit the form it should appear in the task queue.
