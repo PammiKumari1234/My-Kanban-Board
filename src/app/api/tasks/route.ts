@@ -38,3 +38,16 @@ const tasks=[
   export async function GET(){
     return NextResponse.json(tasks);
   }
+
+  export async function POST(request:Request){
+    const newTask= await request.json();
+    newTask.id=Date.now().toString();
+    tasks.push(newTask);
+    return new Response(JSON.stringify(newTask),{
+      status:201,
+      headers:{
+        "Content-type":"application/json"
+      }
+    });
+
+  }
