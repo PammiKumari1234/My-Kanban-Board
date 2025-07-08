@@ -31,29 +31,22 @@ export default function KanbanPage() {
              >Create task +</button>
         </div>
       <Modal
-       isOpen={showModal} 
-       onClose={() => setShowModal(false)} 
-       onSubmit={async (task) => {
-  // Save the task to backend API
-  await fetch("/api/tasks", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(task),
-  });
+  isOpen={showModal}
+  onClose={() => setShowModal(false)}
+  onSubmit={async (task) => {
+    await fetch("/api/tasks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(task),
+    });
 
-  // Re-fetch updated task list
-  const res = await fetch("/api/tasks");
-  const data = await res.json();
-  setTasks(data);
+    const res = await fetch("/api/tasks");
+    const data = await res.json();
+    setTasks(data);
+    setShowModal(false);
+  }}
+/>
 
-  // Close the modal
-  setShowModal(false);
-}}>
-  <h2 className="text-lg font-semibold mb-4">Your Modal Content Here</h2>
-  <p className="text-sm text-gray-600">This is a placeholder. We&apos;ll add the form next!</p>
-</Modal>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-2" style={{margin:"10px"}}>
         {(["backlog", "inProgress", "review", "done"] as const).map(
           (Pstatus) => (
