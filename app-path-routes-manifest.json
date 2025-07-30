@@ -1,9 +1,9 @@
 {
-  "/_not-found/page": "/_not-found",
   "/api/tasks/[id]/route": "/api/tasks/[id]",
-  "/api/tasks/create/route": "/api/tasks/create",
   "/api/tasks/route": "/api/tasks",
+  "/_not-found/page": "/_not-found",
   "/favicon.ico/route": "/favicon.ico",
-  "/kanban/page": "/kanban",
-  "/page": "/"
+  "/api/tasks/create/route": "/api/tasks/create",
+  "/page": "/",
+  "/kanban/page": "/kanban"
 }
