@@ -12,7 +12,7 @@ export default function Navbar() {
      style={{padding:"15px"}}
      >
       <Link href="/">
-        <h1 className="ml-20 sm:ml-20 text-base sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 tracking-wide drop-shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer">Your Project Manager</h1>
+        <h1 className="ml-20 sm:ml-20 text-base sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 tracking-wide drop-shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer">KANBANLY</h1>
       </Link>
       <div className="hidden md:flex gap-6 mr-3 pr-4 text-orange-500">
         <Link href="/">Home</Link>

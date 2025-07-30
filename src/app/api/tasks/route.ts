@@ -1,53 +1,30 @@
+// This file defines the API route for handling GET requests to fetch tasks.
+// It uses Next.js API Routes and Prisma to interact with the database.
+
+import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-const tasks=[
-    {
-      id: 1,
-      title: "setup",
-      description: "This is a new project",
-      PStatus: "done",
-      assignee: "Pammi",
-      priority: "high",
-    },
-    {
-      id: 2,
-      title: "Navbar",
-      description: "Navbar completed",
-      PStatus: "inProgress",
-      assignee: "Ritik",
-      priority: "low",
-    },
-    {
-      id: 3,
-      title: "state management",
-      description: "This needs to be done",
-      PStatus: "backlog",
-      assignee: "Pammi",
-      priority: "low",
-    },
-    {
-      id: 4,
-      title: "homepage",
-      description: "setup the homepage",
-      PStatus: "backlog",
-      assignee: "Pammi",
-      priority: "medium",
-    },
-  ];
-
-  export async function GET(){
+// GET handler for fetching all tasks.
+// It uses Prisma to retrieve all task records from the database.
+export async function GET() {
+  try {
+    const tasks = await prisma.task.findMany();
+    // Return the fetched tasks as JSON.
     return NextResponse.json(tasks);
+  } catch (error: unknown) { // Explicitly type error as unknown
+    console.error("Error fetching tasks:", error);
+    let errorMessage = "An unknown error occurred.";
+    if (error instanceof Error) {
+      // If the error is an instance of Error, we can safely access its message property.
+      errorMessage = error.message;
+    } else if (typeof error === 'object' && error !== null && 'message' in error && typeof error.message === 'string') {
+      // Fallback for objects that have a message property but are not Error instances
+      errorMessage = error.message;
+    }
+    // Return an error response if something goes wrong.
+    return NextResponse.json(
+      { message: "Failed to fetch tasks", error: errorMessage },
+      { status: 500 }
+    );
   }
-
-  export async function POST(request:Request){
-    const newTask= await request.json();
-    newTask.id=Date.now().toString();
-    tasks.push(newTask);
-    return new Response(JSON.stringify(newTask),{
-      status:201,
-      headers:{
-        "Content-type":"application/json"
-      }
-    });
-
-  }
+}

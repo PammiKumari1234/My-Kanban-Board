@@ -1,0 +1,26 @@
+// This file defines your database schema using Prisma Schema Language.
+// It specifies the data model (Task) and the database connection details.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // If you are using a pooled connection string for DATABASE_URL (e.g., with `pooler.supabase.com`),
+  // it's recommended to also provide a direct connection string for migrations.
+  // Uncomment the line below and ensure DIRECT_URL is set in your .env file
+  // with the non-pooled Supabase connection string.
+  // directUrl = env("DIRECT_URL")
+}
+
+// The Task model represents a table in your PostgreSQL database.
+model Task {
+  id          Int    @id @default(autoincrement()) // Unique identifier, auto-incremented by the database
+  title       String // Title of the task
+  description String // Description of the task
+  PStatus     String // Project status (e.g., "backlog", "inProgress", "review", "done")
+  assignee    String // Person assigned to the task
+  priority    String // Priority of the task (e.g., "low", "medium", "high")
+}
