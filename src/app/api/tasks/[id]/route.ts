@@ -1,12 +1,11 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-// Define the type for the context object, specifically for params
 interface RouteContext {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
+
+
 
 // DELETE handler for deleting a task by its ID.
 // The task ID is extracted from the URL parameters.
@@ -15,7 +14,8 @@ export async function DELETE(
   context: RouteContext // Explicitly type the second argument as RouteContext
 ) {
   try {
-    const taskId = parseInt(context.params.id, 10); // Access params via context.params
+    const { id } = await context.params;
+    const taskId = parseInt(id, 10); // Access params via context.params
 
     if (isNaN(taskId)) {
       return NextResponse.json({ message: "Invalid Task ID" }, { status: 400 });
@@ -53,7 +53,8 @@ export async function PATCH(
   context: RouteContext // Explicitly type the second argument as RouteContext
 ) {
   try {
-    const taskId = parseInt(context.params.id, 10);
+    const { id } = await context.params;
+    const taskId = parseInt(id, 10);
     const updateData = await request.json(); // Get the data to update from the request body
 
     if (isNaN(taskId)) {
