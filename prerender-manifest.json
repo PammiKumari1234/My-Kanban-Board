@@ -30,30 +30,6 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/kanban": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/kanban",
-      "dataRoute": "/kanban.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/": {
       "experimentalBypassFor": [
         {
@@ -77,13 +53,37 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
+    },
+    "/kanban": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/kanban",
+      "dataRoute": "/kanban.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "b574091a23b431136ee48e975c0f529a",
-    "previewModeSigningKey": "6deab4d690882e24a4f752f5bae68769b0896565c62ee762f4823966953ed437",
-    "previewModeEncryptionKey": "468e5d684a94fb625a0870e1775dc9c7f5913c9077eeec39dda6415f92e20338"
+    "previewModeId": "700caa9197c8d6d8fdb10589ceeb127c",
+    "previewModeSigningKey": "2e289b49ad7d8ee21506bb0ea476383673fd408c347930561e493ad440ff3146",
+    "previewModeEncryptionKey": "33d9f20a9e009ed0c38a8373f1522a3066ba57e2603a85a5d85546dc0f38c50a"
   }
 }
