@@ -8,6 +8,15 @@ import { NextResponse } from "next/server";
 // It uses Prisma to retrieve all task records from the database.
 export async function GET() {
   try {
+    // --- ADD THIS DEBUG LOG ---
+    const dbUrl = process.env.DATABASE_URL;
+    if (dbUrl) {
+      const maskedUrl = dbUrl.replace(/:([^@]+)@/, ':****@'); // Mask the password
+      console.log('Vercel DATABASE_URL (masked):', maskedUrl);
+    } else {
+      console.log('Vercel DATABASE_URL is NOT set!');
+    }
+    // --- END DEBUG LOG ---
     const tasks = await prisma.task.findMany();
     // Return the fetched tasks as JSON.
     return NextResponse.json(tasks);
