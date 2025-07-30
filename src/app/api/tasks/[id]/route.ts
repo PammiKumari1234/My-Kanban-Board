@@ -1,17 +1,21 @@
-// This file defines the API route for handling DELETE requests for a specific task.
-// It uses Next.js Dynamic Routes to capture the task ID from the URL.
-
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+
+// Define the type for the context object, specifically for params
+interface RouteContext {
+  params: {
+    id: string;
+  };
+}
 
 // DELETE handler for deleting a task by its ID.
 // The task ID is extracted from the URL parameters.
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } } // Destructure params to get the ID
+  context: RouteContext // Explicitly type the second argument as RouteContext
 ) {
   try {
-    const taskId = parseInt(params.id, 10); // Parse the ID from string to integer
+    const taskId = parseInt(context.params.id, 10); // Access params via context.params
 
     if (isNaN(taskId)) {
       return NextResponse.json({ message: "Invalid Task ID" }, { status: 400 });
@@ -46,10 +50,10 @@ export async function DELETE(
 // This is used to update the PStatus (and potentially other fields) when a task is dragged.
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  context: RouteContext // Explicitly type the second argument as RouteContext
 ) {
   try {
-    const taskId = parseInt(params.id, 10);
+    const taskId = parseInt(context.params.id, 10);
     const updateData = await request.json(); // Get the data to update from the request body
 
     if (isNaN(taskId)) {
